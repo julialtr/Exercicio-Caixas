@@ -22,7 +22,11 @@
 <script>
 export default {
 name: "Ferramentas",
-props: ['caixinhas'],
+computed: {
+  caixinhas(){
+    return this.$store.state.caixinhas
+  } 
+},
 data: function(){
     return{
         cores: ['background: brown', 'background: gray', 'background: green' ],
@@ -31,14 +35,14 @@ data: function(){
     }
 }, methods: {
 alteraCor: function(cor) {
-   this.$emit('alteraCor', {
+   this.$store.commit('alteraCor', {
      cor: cor,
      caixa: this.caixaSel
    })
 }, alterarTexto: function(){
-  this.$emit('alterouTexto',{
-    caixa: this.caixaSel,
-    titulo: this.titulo
+  this.$store.commit('alterarTexto',{
+    titulo: this.titulo,
+    caixa: this.caixaSel    
   })
 }
 }}
@@ -93,3 +97,6 @@ font-family: cursive;
 cursor: pointer;
 }
 </style> 
+
+
+
